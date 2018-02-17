@@ -1,0 +1,615 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generated="20180213 21:33:50.991" generator="Robot 3.0.2 (Python 2.7.14 on linux2)">
+<suite source="/home/alex/pytesting/http.robot" id="s1" name="Http">
+<kw type="setup" name="Start">
+<kw name="Start Process" library="Process">
+<doc>Starts a new process on background.</doc>
+<arguments>
+<arg>python server.py 60000</arg>
+<arg>shell=True</arg>
+<arg>cwd=/home/alex/pytesting</arg>
+</arguments>
+<assign>
+<var>${TEMP}</var>
+</assign>
+<msg timestamp="20180213 21:33:53.245" level="INFO">Starting process:
+python server.py 60000</msg>
+<msg timestamp="20180213 21:33:53.248" level="INFO">${TEMP} = 1</msg>
+<status status="PASS" endtime="20180213 21:33:53.248" starttime="20180213 21:33:53.245"></status>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<arguments>
+<arg>${PROCESS}</arg>
+<arg>${TEMP}</arg>
+</arguments>
+<msg timestamp="20180213 21:33:53.249" level="INFO">${PROCESS} = 1</msg>
+<status status="PASS" endtime="20180213 21:33:53.249" starttime="20180213 21:33:53.248"></status>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>0.1 sec</arg>
+</arguments>
+<msg timestamp="20180213 21:33:53.350" level="INFO">Slept 100 milliseconds</msg>
+<status status="PASS" endtime="20180213 21:33:53.350" starttime="20180213 21:33:53.249"></status>
+</kw>
+<status status="PASS" endtime="20180213 21:33:53.350" starttime="20180213 21:33:53.244"></status>
+</kw>
+<test id="s1-t1" name="Valid String">
+<kw name="Get Request Of aaa Should Be 200">
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>httpd</arg>
+<arg>http://localhost:60000</arg>
+</arguments>
+<msg timestamp="20180213 21:33:53.351" level="INFO">Creating Session using : alias=httpd, url=http://localhost:60000, headers={},                     cookies=None, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" endtime="20180213 21:33:53.352" starttime="20180213 21:33:53.351"></status>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<arguments>
+<arg>IMSI=${str}</arg>
+</arguments>
+<assign>
+<var>${HEADERS}</var>
+</assign>
+<msg timestamp="20180213 21:33:53.353" level="INFO">${HEADERS} = {u'IMSI': u'aaa'}</msg>
+<status status="PASS" endtime="20180213 21:33:53.353" starttime="20180213 21:33:53.352"></status>
+</kw>
+<kw name="Get Request" library="RequestsLibrary">
+<doc>Send a GET request on the session object found using the</doc>
+<arguments>
+<arg>httpd</arg>
+<arg>/</arg>
+<arg>${HEADERS}</arg>
+</arguments>
+<assign>
+<var>${resp}</var>
+</assign>
+<msg timestamp="20180213 21:33:53.369" level="INFO">Starting new HTTP connection (1): localhost</msg>
+<msg timestamp="20180213 21:33:53.377" level="INFO">Get Request using : alias=httpd, uri=/, headers={u'IMSI': u'aaa'} json=None</msg>
+<msg timestamp="20180213 21:33:53.377" level="INFO">${resp} = &lt;Response [200]&gt;</msg>
+<status status="PASS" endtime="20180213 21:33:53.377" starttime="20180213 21:33:53.354"></status>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${resp.status_code}</arg>
+<arg>${expected}</arg>
+</arguments>
+<msg timestamp="20180213 21:33:53.378" level="INFO">Argument types are:
+&lt;type 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" endtime="20180213 21:33:53.378" starttime="20180213 21:33:53.377"></status>
+</kw>
+<status status="PASS" endtime="20180213 21:33:53.378" starttime="20180213 21:33:53.351"></status>
+</kw>
+<kw name="Get Request Of 123sae Should Be 200">
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>httpd</arg>
+<arg>http://localhost:60000</arg>
+</arguments>
+<msg timestamp="20180213 21:33:53.380" level="INFO">Creating Session using : alias=httpd, url=http://localhost:60000, headers={},                     cookies=None, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" endtime="20180213 21:33:53.380" starttime="20180213 21:33:53.379"></status>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<arguments>
+<arg>IMSI=${str}</arg>
+</arguments>
+<assign>
+<var>${HEADERS}</var>
+</assign>
+<msg timestamp="20180213 21:33:53.381" level="INFO">${HEADERS} = {u'IMSI': u'123sae'}</msg>
+<status status="PASS" endtime="20180213 21:33:53.381" starttime="20180213 21:33:53.380"></status>
+</kw>
+<kw name="Get Request" library="RequestsLibrary">
+<doc>Send a GET request on the session object found using the</doc>
+<arguments>
+<arg>httpd</arg>
+<arg>/</arg>
+<arg>${HEADERS}</arg>
+</arguments>
+<assign>
+<var>${resp}</var>
+</assign>
+<msg timestamp="20180213 21:33:53.382" level="INFO">Starting new HTTP connection (1): localhost</msg>
+<msg timestamp="20180213 21:33:53.383" level="INFO">Get Request using : alias=httpd, uri=/, headers={u'IMSI': u'123sae'} json=None</msg>
+<msg timestamp="20180213 21:33:53.384" level="INFO">${resp} = &lt;Response [200]&gt;</msg>
+<status status="PASS" endtime="20180213 21:33:53.384" starttime="20180213 21:33:53.381"></status>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${resp.status_code}</arg>
+<arg>${expected}</arg>
+</arguments>
+<msg timestamp="20180213 21:33:53.384" level="INFO">Argument types are:
+&lt;type 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" endtime="20180213 21:33:53.385" starttime="20180213 21:33:53.384"></status>
+</kw>
+<status status="PASS" endtime="20180213 21:33:53.385" starttime="20180213 21:33:53.379"></status>
+</kw>
+<kw name="Get Request Of 123456789012 Should Be 200">
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>httpd</arg>
+<arg>http://localhost:60000</arg>
+</arguments>
+<msg timestamp="20180213 21:33:53.385" level="INFO">Creating Session using : alias=httpd, url=http://localhost:60000, headers={},                     cookies=None, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" endtime="20180213 21:33:53.386" starttime="20180213 21:33:53.385"></status>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<arguments>
+<arg>IMSI=${str}</arg>
+</arguments>
+<assign>
+<var>${HEADERS}</var>
+</assign>
+<msg timestamp="20180213 21:33:53.387" level="INFO">${HEADERS} = {u'IMSI': u'123456789012'}</msg>
+<status status="PASS" endtime="20180213 21:33:53.387" starttime="20180213 21:33:53.386"></status>
+</kw>
+<kw name="Get Request" library="RequestsLibrary">
+<doc>Send a GET request on the session object found using the</doc>
+<arguments>
+<arg>httpd</arg>
+<arg>/</arg>
+<arg>${HEADERS}</arg>
+</arguments>
+<assign>
+<var>${resp}</var>
+</assign>
+<msg timestamp="20180213 21:33:53.388" level="INFO">Starting new HTTP connection (1): localhost</msg>
+<msg timestamp="20180213 21:33:53.389" level="INFO">Get Request using : alias=httpd, uri=/, headers={u'IMSI': u'123456789012'} json=None</msg>
+<msg timestamp="20180213 21:33:53.390" level="INFO">${resp} = &lt;Response [200]&gt;</msg>
+<status status="PASS" endtime="20180213 21:33:53.390" starttime="20180213 21:33:53.387"></status>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${resp.status_code}</arg>
+<arg>${expected}</arg>
+</arguments>
+<msg timestamp="20180213 21:33:53.390" level="INFO">Argument types are:
+&lt;type 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" endtime="20180213 21:33:53.390" starttime="20180213 21:33:53.390"></status>
+</kw>
+<status status="PASS" endtime="20180213 21:33:53.390" starttime="20180213 21:33:53.385"></status>
+</kw>
+<kw name="Get Request Of qwertyuiopas Should Be 200">
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>httpd</arg>
+<arg>http://localhost:60000</arg>
+</arguments>
+<msg timestamp="20180213 21:33:53.391" level="INFO">Creating Session using : alias=httpd, url=http://localhost:60000, headers={},                     cookies=None, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" endtime="20180213 21:33:53.392" starttime="20180213 21:33:53.391"></status>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<arguments>
+<arg>IMSI=${str}</arg>
+</arguments>
+<assign>
+<var>${HEADERS}</var>
+</assign>
+<msg timestamp="20180213 21:33:53.392" level="INFO">${HEADERS} = {u'IMSI': u'qwertyuiopas'}</msg>
+<status status="PASS" endtime="20180213 21:33:53.392" starttime="20180213 21:33:53.392"></status>
+</kw>
+<kw name="Get Request" library="RequestsLibrary">
+<doc>Send a GET request on the session object found using the</doc>
+<arguments>
+<arg>httpd</arg>
+<arg>/</arg>
+<arg>${HEADERS}</arg>
+</arguments>
+<assign>
+<var>${resp}</var>
+</assign>
+<msg timestamp="20180213 21:33:53.393" level="INFO">Starting new HTTP connection (1): localhost</msg>
+<msg timestamp="20180213 21:33:53.394" level="INFO">Get Request using : alias=httpd, uri=/, headers={u'IMSI': u'qwertyuiopas'} json=None</msg>
+<msg timestamp="20180213 21:33:53.394" level="INFO">${resp} = &lt;Response [200]&gt;</msg>
+<status status="PASS" endtime="20180213 21:33:53.394" starttime="20180213 21:33:53.392"></status>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${resp.status_code}</arg>
+<arg>${expected}</arg>
+</arguments>
+<msg timestamp="20180213 21:33:53.395" level="INFO">Argument types are:
+&lt;type 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" endtime="20180213 21:33:53.395" starttime="20180213 21:33:53.394"></status>
+</kw>
+<status status="PASS" endtime="20180213 21:33:53.395" starttime="20180213 21:33:53.391"></status>
+</kw>
+<kw name="Get Request Of asdfghjklzx Should Be 200">
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>httpd</arg>
+<arg>http://localhost:60000</arg>
+</arguments>
+<msg timestamp="20180213 21:33:53.396" level="INFO">Creating Session using : alias=httpd, url=http://localhost:60000, headers={},                     cookies=None, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" endtime="20180213 21:33:53.396" starttime="20180213 21:33:53.395"></status>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<arguments>
+<arg>IMSI=${str}</arg>
+</arguments>
+<assign>
+<var>${HEADERS}</var>
+</assign>
+<msg timestamp="20180213 21:33:53.396" level="INFO">${HEADERS} = {u'IMSI': u'asdfghjklzx'}</msg>
+<status status="PASS" endtime="20180213 21:33:53.396" starttime="20180213 21:33:53.396"></status>
+</kw>
+<kw name="Get Request" library="RequestsLibrary">
+<doc>Send a GET request on the session object found using the</doc>
+<arguments>
+<arg>httpd</arg>
+<arg>/</arg>
+<arg>${HEADERS}</arg>
+</arguments>
+<assign>
+<var>${resp}</var>
+</assign>
+<msg timestamp="20180213 21:33:53.397" level="INFO">Starting new HTTP connection (1): localhost</msg>
+<msg timestamp="20180213 21:33:53.399" level="INFO">Get Request using : alias=httpd, uri=/, headers={u'IMSI': u'asdfghjklzx'} json=None</msg>
+<msg timestamp="20180213 21:33:53.399" level="INFO">${resp} = &lt;Response [200]&gt;</msg>
+<status status="PASS" endtime="20180213 21:33:53.399" starttime="20180213 21:33:53.397"></status>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${resp.status_code}</arg>
+<arg>${expected}</arg>
+</arguments>
+<msg timestamp="20180213 21:33:53.399" level="INFO">Argument types are:
+&lt;type 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" endtime="20180213 21:33:53.399" starttime="20180213 21:33:53.399"></status>
+</kw>
+<status status="PASS" endtime="20180213 21:33:53.399" starttime="20180213 21:33:53.395"></status>
+</kw>
+<kw name="Get Request Of ${EMPTY} Should Be 200">
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>httpd</arg>
+<arg>http://localhost:60000</arg>
+</arguments>
+<msg timestamp="20180213 21:33:53.400" level="INFO">Creating Session using : alias=httpd, url=http://localhost:60000, headers={},                     cookies=None, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" endtime="20180213 21:33:53.401" starttime="20180213 21:33:53.400"></status>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<arguments>
+<arg>IMSI=${str}</arg>
+</arguments>
+<assign>
+<var>${HEADERS}</var>
+</assign>
+<msg timestamp="20180213 21:33:53.402" level="INFO">${HEADERS} = {u'IMSI': ''}</msg>
+<status status="PASS" endtime="20180213 21:33:53.402" starttime="20180213 21:33:53.401"></status>
+</kw>
+<kw name="Get Request" library="RequestsLibrary">
+<doc>Send a GET request on the session object found using the</doc>
+<arguments>
+<arg>httpd</arg>
+<arg>/</arg>
+<arg>${HEADERS}</arg>
+</arguments>
+<assign>
+<var>${resp}</var>
+</assign>
+<msg timestamp="20180213 21:33:53.404" level="INFO">Starting new HTTP connection (1): localhost</msg>
+<msg timestamp="20180213 21:33:53.405" level="INFO">Get Request using : alias=httpd, uri=/, headers={u'IMSI': ''} json=None</msg>
+<msg timestamp="20180213 21:33:53.405" level="INFO">${resp} = &lt;Response [200]&gt;</msg>
+<status status="PASS" endtime="20180213 21:33:53.405" starttime="20180213 21:33:53.402"></status>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${resp.status_code}</arg>
+<arg>${expected}</arg>
+</arguments>
+<msg timestamp="20180213 21:33:53.406" level="INFO">Argument types are:
+&lt;type 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" endtime="20180213 21:33:53.406" starttime="20180213 21:33:53.405"></status>
+</kw>
+<status status="PASS" endtime="20180213 21:33:53.406" starttime="20180213 21:33:53.400"></status>
+</kw>
+<status status="PASS" endtime="20180213 21:33:53.406" critical="yes" starttime="20180213 21:33:53.350"></status>
+</test>
+<test id="s1-t2" name="Invalid String">
+<kw name="Get Request Of 67*69 Should Be 406">
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>httpd</arg>
+<arg>http://localhost:60000</arg>
+</arguments>
+<msg timestamp="20180213 21:33:53.407" level="INFO">Creating Session using : alias=httpd, url=http://localhost:60000, headers={},                     cookies=None, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" endtime="20180213 21:33:53.407" starttime="20180213 21:33:53.407"></status>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<arguments>
+<arg>IMSI=${str}</arg>
+</arguments>
+<assign>
+<var>${HEADERS}</var>
+</assign>
+<msg timestamp="20180213 21:33:53.408" level="INFO">${HEADERS} = {u'IMSI': u'67*69'}</msg>
+<status status="PASS" endtime="20180213 21:33:53.408" starttime="20180213 21:33:53.407"></status>
+</kw>
+<kw name="Get Request" library="RequestsLibrary">
+<doc>Send a GET request on the session object found using the</doc>
+<arguments>
+<arg>httpd</arg>
+<arg>/</arg>
+<arg>${HEADERS}</arg>
+</arguments>
+<assign>
+<var>${resp}</var>
+</assign>
+<msg timestamp="20180213 21:33:53.409" level="INFO">Starting new HTTP connection (1): localhost</msg>
+<msg timestamp="20180213 21:33:53.410" level="INFO">Get Request using : alias=httpd, uri=/, headers={u'IMSI': u'67*69'} json=None</msg>
+<msg timestamp="20180213 21:33:53.410" level="INFO">${resp} = &lt;Response [406]&gt;</msg>
+<status status="PASS" endtime="20180213 21:33:53.410" starttime="20180213 21:33:53.408"></status>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${resp.status_code}</arg>
+<arg>${expected}</arg>
+</arguments>
+<msg timestamp="20180213 21:33:53.411" level="INFO">Argument types are:
+&lt;type 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" endtime="20180213 21:33:53.411" starttime="20180213 21:33:53.410"></status>
+</kw>
+<status status="PASS" endtime="20180213 21:33:53.411" starttime="20180213 21:33:53.407"></status>
+</kw>
+<kw name="Get Request Of *:%??? Should Be 406">
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>httpd</arg>
+<arg>http://localhost:60000</arg>
+</arguments>
+<msg timestamp="20180213 21:33:53.411" level="INFO">Creating Session using : alias=httpd, url=http://localhost:60000, headers={},                     cookies=None, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" endtime="20180213 21:33:53.412" starttime="20180213 21:33:53.411"></status>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<arguments>
+<arg>IMSI=${str}</arg>
+</arguments>
+<assign>
+<var>${HEADERS}</var>
+</assign>
+<msg timestamp="20180213 21:33:53.412" level="INFO">${HEADERS} = {u'IMSI': u'*:%???'}</msg>
+<status status="PASS" endtime="20180213 21:33:53.412" starttime="20180213 21:33:53.412"></status>
+</kw>
+<kw name="Get Request" library="RequestsLibrary">
+<doc>Send a GET request on the session object found using the</doc>
+<arguments>
+<arg>httpd</arg>
+<arg>/</arg>
+<arg>${HEADERS}</arg>
+</arguments>
+<assign>
+<var>${resp}</var>
+</assign>
+<msg timestamp="20180213 21:33:53.413" level="INFO">Starting new HTTP connection (1): localhost</msg>
+<msg timestamp="20180213 21:33:53.414" level="INFO">Get Request using : alias=httpd, uri=/, headers={u'IMSI': u'*:%???'} json=None</msg>
+<msg timestamp="20180213 21:33:53.414" level="INFO">${resp} = &lt;Response [406]&gt;</msg>
+<status status="PASS" endtime="20180213 21:33:53.414" starttime="20180213 21:33:53.412"></status>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${resp.status_code}</arg>
+<arg>${expected}</arg>
+</arguments>
+<msg timestamp="20180213 21:33:53.415" level="INFO">Argument types are:
+&lt;type 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" endtime="20180213 21:33:53.415" starttime="20180213 21:33:53.415"></status>
+</kw>
+<status status="PASS" endtime="20180213 21:33:53.415" starttime="20180213 21:33:53.411"></status>
+</kw>
+<kw name="Get Request Of 1234567890123 Should Be 406">
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>httpd</arg>
+<arg>http://localhost:60000</arg>
+</arguments>
+<msg timestamp="20180213 21:33:53.417" level="INFO">Creating Session using : alias=httpd, url=http://localhost:60000, headers={},                     cookies=None, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" endtime="20180213 21:33:53.417" starttime="20180213 21:33:53.415"></status>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<arguments>
+<arg>IMSI=${str}</arg>
+</arguments>
+<assign>
+<var>${HEADERS}</var>
+</assign>
+<msg timestamp="20180213 21:33:53.418" level="INFO">${HEADERS} = {u'IMSI': u'1234567890123'}</msg>
+<status status="PASS" endtime="20180213 21:33:53.418" starttime="20180213 21:33:53.417"></status>
+</kw>
+<kw name="Get Request" library="RequestsLibrary">
+<doc>Send a GET request on the session object found using the</doc>
+<arguments>
+<arg>httpd</arg>
+<arg>/</arg>
+<arg>${HEADERS}</arg>
+</arguments>
+<assign>
+<var>${resp}</var>
+</assign>
+<msg timestamp="20180213 21:33:53.418" level="INFO">Starting new HTTP connection (1): localhost</msg>
+<msg timestamp="20180213 21:33:53.419" level="INFO">Get Request using : alias=httpd, uri=/, headers={u'IMSI': u'1234567890123'} json=None</msg>
+<msg timestamp="20180213 21:33:53.420" level="INFO">${resp} = &lt;Response [406]&gt;</msg>
+<status status="PASS" endtime="20180213 21:33:53.420" starttime="20180213 21:33:53.418"></status>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${resp.status_code}</arg>
+<arg>${expected}</arg>
+</arguments>
+<msg timestamp="20180213 21:33:53.420" level="INFO">Argument types are:
+&lt;type 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" endtime="20180213 21:33:53.421" starttime="20180213 21:33:53.420"></status>
+</kw>
+<status status="PASS" endtime="20180213 21:33:53.421" starttime="20180213 21:33:53.415"></status>
+</kw>
+<kw name="Get Request Of qwertyuiopasu Should Be 406">
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>httpd</arg>
+<arg>http://localhost:60000</arg>
+</arguments>
+<msg timestamp="20180213 21:33:53.422" level="INFO">Creating Session using : alias=httpd, url=http://localhost:60000, headers={},                     cookies=None, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" endtime="20180213 21:33:53.422" starttime="20180213 21:33:53.421"></status>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<arguments>
+<arg>IMSI=${str}</arg>
+</arguments>
+<assign>
+<var>${HEADERS}</var>
+</assign>
+<msg timestamp="20180213 21:33:53.423" level="INFO">${HEADERS} = {u'IMSI': u'qwertyuiopasu'}</msg>
+<status status="PASS" endtime="20180213 21:33:53.423" starttime="20180213 21:33:53.423"></status>
+</kw>
+<kw name="Get Request" library="RequestsLibrary">
+<doc>Send a GET request on the session object found using the</doc>
+<arguments>
+<arg>httpd</arg>
+<arg>/</arg>
+<arg>${HEADERS}</arg>
+</arguments>
+<assign>
+<var>${resp}</var>
+</assign>
+<msg timestamp="20180213 21:33:53.424" level="INFO">Starting new HTTP connection (1): localhost</msg>
+<msg timestamp="20180213 21:33:53.425" level="INFO">Get Request using : alias=httpd, uri=/, headers={u'IMSI': u'qwertyuiopasu'} json=None</msg>
+<msg timestamp="20180213 21:33:53.425" level="INFO">${resp} = &lt;Response [406]&gt;</msg>
+<status status="PASS" endtime="20180213 21:33:53.425" starttime="20180213 21:33:53.423"></status>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${resp.status_code}</arg>
+<arg>${expected}</arg>
+</arguments>
+<msg timestamp="20180213 21:33:53.426" level="INFO">Argument types are:
+&lt;type 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" endtime="20180213 21:33:53.426" starttime="20180213 21:33:53.426"></status>
+</kw>
+<status status="PASS" endtime="20180213 21:33:53.426" starttime="20180213 21:33:53.421"></status>
+</kw>
+<kw name="Get Request Of uuuuuuuuuuuuuuuiiiiiiiiiiiiiiiiiiiiiiiiuuuud Should Be 406">
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>httpd</arg>
+<arg>http://localhost:60000</arg>
+</arguments>
+<msg timestamp="20180213 21:33:53.427" level="INFO">Creating Session using : alias=httpd, url=http://localhost:60000, headers={},                     cookies=None, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" endtime="20180213 21:33:53.427" starttime="20180213 21:33:53.427"></status>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<arguments>
+<arg>IMSI=${str}</arg>
+</arguments>
+<assign>
+<var>${HEADERS}</var>
+</assign>
+<msg timestamp="20180213 21:33:53.428" level="INFO">${HEADERS} = {u'IMSI': u'uuuuuuuuuuuuuuuiiiiiiiiiiiiiiiiiiiiiiiiuuuud'}</msg>
+<status status="PASS" endtime="20180213 21:33:53.428" starttime="20180213 21:33:53.427"></status>
+</kw>
+<kw name="Get Request" library="RequestsLibrary">
+<doc>Send a GET request on the session object found using the</doc>
+<arguments>
+<arg>httpd</arg>
+<arg>/</arg>
+<arg>${HEADERS}</arg>
+</arguments>
+<assign>
+<var>${resp}</var>
+</assign>
+<msg timestamp="20180213 21:33:53.429" level="INFO">Starting new HTTP connection (1): localhost</msg>
+<msg timestamp="20180213 21:33:53.430" level="INFO">Get Request using : alias=httpd, uri=/, headers={u'IMSI': u'uuuuuuuuuuuuuuuiiiiiiiiiiiiiiiiiiiiiiiiuuuud'} json=None</msg>
+<msg timestamp="20180213 21:33:53.430" level="INFO">${resp} = &lt;Response [406]&gt;</msg>
+<status status="PASS" endtime="20180213 21:33:53.430" starttime="20180213 21:33:53.428"></status>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${resp.status_code}</arg>
+<arg>${expected}</arg>
+</arguments>
+<msg timestamp="20180213 21:33:53.430" level="INFO">Argument types are:
+&lt;type 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" endtime="20180213 21:33:53.430" starttime="20180213 21:33:53.430"></status>
+</kw>
+<status status="PASS" endtime="20180213 21:33:53.430" starttime="20180213 21:33:53.426"></status>
+</kw>
+<tags>
+<tag>not_ready</tag>
+</tags>
+<status status="PASS" endtime="20180213 21:33:53.430" critical="yes" starttime="20180213 21:33:53.406"></status>
+</test>
+<kw type="teardown" name="End">
+<kw name="Terminate Process" library="Process">
+<doc>Stops the process gracefully or forcefully.</doc>
+<arguments>
+<arg>${PROCESS}</arg>
+</arguments>
+<msg timestamp="20180213 21:33:53.431" level="INFO">Gracefully terminating process.</msg>
+<msg timestamp="20180213 21:33:53.432" level="INFO">Process completed.</msg>
+<status status="PASS" endtime="20180213 21:33:53.432" starttime="20180213 21:33:53.431"></status>
+</kw>
+<status status="PASS" endtime="20180213 21:33:53.432" starttime="20180213 21:33:53.431"></status>
+</kw>
+<status status="PASS" endtime="20180213 21:33:53.432" starttime="20180213 21:33:50.993"></status>
+</suite>
+<statistics>
+<total>
+<stat fail="0" pass="2">Critical Tests</stat>
+<stat fail="0" pass="2">All Tests</stat>
+</total>
+<tag>
+<stat fail="0" pass="1">not_ready</stat>
+</tag>
+<suite>
+<stat fail="0" id="s1" name="Http" pass="2">Http</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
